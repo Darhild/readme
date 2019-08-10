@@ -36,8 +36,40 @@ $posts = [
         "content" => "www.htmlacademy.ru",
         "user_name" => "Владик",
         "avatar" => "userpic.jpg"
-    ]
+    ],
+    [
+        "title" => "Полезный пост про Байкал",
+        "type" => "post-text",
+        "content" => "Озеро Байкал – огромное древнее озеро в горах Сибири к северу от монгольской границы. Байкал считается самым глубоким озером в мире. Он окружен сетью пешеходных маршрутов, называемых Большой байкальской тропой. Деревня Листвянка, расположенная на западном берегу озера, – популярная отправная точка для летних экскурсий. Зимой здесь можно кататься на коньках и собачьих упряжках.",
+        "user_name" => "Лариса",
+        "avatar" => "userpic-larisa-small.jpg"
+    ],
 ];
+
+function format_text($str, $max_length = 300)
+{
+    $words = explode(" ", $str);
+    $length = 0;
+
+    foreach ($words as $key => $word) {
+        $length += strlen($word);
+
+        if ($length >= $max_length) {
+            array_splice($words, $key);
+            $words[$key] .= "...</p><a class=\"post-text__more-link\" href=\"#\">Читать далее</a>";
+            break;
+        }
+
+        if ($key === count($words)- 1) {
+            $word .= "</p>";
+        }
+    }
+
+    $words[0] = "<p>" . $words[0];
+
+    return implode($words, " ");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -285,7 +317,7 @@ $posts = [
                         </a>
                     </div>
                     <?php elseif ($post["type"] === "post-text"): ?>
-                    <p><?=$post["content"]; ?></p>
+                    <?=format_text($post["content"], 300); ?>
                     <?php endif; ?>
                 </div>
                 <footer class="post__footer">
