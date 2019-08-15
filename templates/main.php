@@ -1,3 +1,8 @@
+<?php
+    require_once "helpers.php";
+    require_once "functions.php";
+?>
+
 <div class="container">
     <h1 class="page__title page__title--popular">Популярное</h1>
 </div>
@@ -84,7 +89,7 @@
         </div>
     </div>
     <div class="popular__posts">
-        <?php foreach ($posts as $post): ?>
+        <?php foreach ($posts as $key => $post): ?>
             <article class="popular__post post <?=$post["type"]; ?>>">
                 <header class="post__header">
                     <h2><?=strip_tags($post["title"]); ?></h2>
@@ -140,7 +145,8 @@
                             </div>
                             <div class="post__info">
                                 <b class="post__author-name"><?=$post["user_name"]; ?></b>
-                                <time class="post__time" datetime="">дата</time>
+                                <?php $date = generate_random_date($key); ?>
+                                <time class="post__time" datetime="<?=$date; ?>" title="<?=date_format(date_create($date), 'd.m.Y H:i'); ?>"><?=show_time_after_post($date); ?></time>
                             </div>
                         </a>
                     </div>
