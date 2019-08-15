@@ -1,4 +1,12 @@
 <?php
+/**
+ * Обрезает передаваемый текст до указанной длины, добавляет троеточие
+ *
+ * @param string $str Текст
+ * @param int $max_length Максимальная длина текста
+ *
+ * @return string Отформатированный текст
+ */
 function format_text($str, $max_length = 300)
 {
     $words = explode(" ", $str);
@@ -22,4 +30,4 @@ function format_text($str, $max_length = 300)
 
     return implode($words, " ");
 }
-?>
+

@@ -45,4 +45,4 @@ $posts = [
         "avatar" => "userpic-larisa-small.jpg"
     ],
 ];
-?>
+

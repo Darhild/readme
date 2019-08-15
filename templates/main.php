@@ -84,11 +84,10 @@
         </div>
     </div>
     <div class="popular__posts">
-
         <?php foreach ($posts as $post): ?>
-            <article class="popular__post post <?=strip_tags($post["type"]); ?>>">
+            <article class="popular__post post <?=$post["type"]; ?>>">
                 <header class="post__header">
-                    <h2><?=$post["title"]; ?></h2>
+                    <h2><?=strip_tags($post["title"]); ?></h2>
                 </header>
                 <div class="post__main">
                     <?php if ($post["type"] === "post-quote"): ?>
