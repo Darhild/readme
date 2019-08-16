@@ -65,7 +65,7 @@ function format_text($str, $max_length = 300)
 //      return $months . " " . $months_form . " назад";
 //  }
 //}
-
+/*
 function show_time_after_post($date) {
     date_default_timezone_set("Europe/Moscow");
 
@@ -100,6 +100,50 @@ function show_time_after_post($date) {
     else {
         return $months . " " . $months_form . " назад";
     }
+}*/
+
+
+function show_time_after_post($date) {
+    date_default_timezone_set("Europe/Moscow");
+
+    $now = date_create("now");
+    $post_time = date_create($date);
+    $diff = date_diff($post_time, $now);
+    $minutes = date_interval_format($diff, "%i");
+    $hours = date_interval_format($diff, "%h");
+    $days = date_interval_format($diff, "%d");
+    $weeks = floor($days / 7);
+    $months = date_interval_format($diff, "%m");
+
+    $minutes_form = get_noun_plural_form($minutes, "минута", "минуты", "минут");
+    $hours_form = get_noun_plural_form($hours, "час", "часа", "часов");
+    $days_form = get_noun_plural_form($days, "день", "дня", "дней");
+    $weeks_form = get_noun_plural_form($weeks, "неделя", "недели", "недель");
+    $months_form = get_noun_plural_form($months, "месяц", "месяца", "месяцев");
+
+    $plural_forms = [
+        "minutes" => ["минута", "минуты", "минут"],
+        "hours" => ["час", "часа", "часов"],
+        "days" => ["день", "дня", "дней"],
+        "weeks" => ["неделя", "недели", "недель"],
+        "months" => ["месяц", "месяца", "месяцев"]
+    ];
+
+    $plural_form = get_noun_plural_form
+
+    if ($months) {
+        return $months . " " . get_noun_plural_form($minutes, $plural_forms["minutes"]) . " назад";
+    }
+    else if ($weeks) {
+        return $weeks . " " . $weeks_form . " назад";
+    }
+    else if ($days) {
+        return $days . " " . $days_form . " назад";
+    }
+    else if ($hours) {
+        return $hours . " " . $hours_form . " назад";
+    }
+    else {
+        return $minutes . " " . $minutes_form . " назад";
+    }
 }
-
-
