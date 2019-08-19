@@ -129,10 +129,8 @@ function show_time_after_post($date) {
         "months" => ["месяц", "месяца", "месяцев"]
     ];
 
-    $plural_form = get_noun_plural_form
-
     if ($months) {
-        return $months . " " . get_noun_plural_form($minutes, $plural_forms["minutes"]) . " назад";
+        return $months . " " . $months_form . " назад";
     }
     else if ($weeks) {
         return $weeks . " " . $weeks_form . " назад";

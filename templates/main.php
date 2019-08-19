@@ -1,8 +1,3 @@
-<?php
-    require_once "helpers.php";
-    require_once "functions.php";
-?>
-
 <div class="container">
     <h1 class="page__title page__title--popular">Популярное</h1>
 </div>
